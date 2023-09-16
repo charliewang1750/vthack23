@@ -10,4 +10,9 @@ public class RealEstateController {
     public String hello(){
         return "hello";
     }
+
+    @RequestMapping("/houses/random")
+    public RealEstate info(){
+        return;
+    }
 }
