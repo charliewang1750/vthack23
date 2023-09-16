@@ -19,6 +19,11 @@ public class RealEstateController {
         return null;
     }
 
+    @RequestMapping("/random")
+    public double location(){
+        return Amazon.newLocation();
+    }
+
     /*@RequestMapping("/houses/random")
     public RealEstate info(){
         return;
