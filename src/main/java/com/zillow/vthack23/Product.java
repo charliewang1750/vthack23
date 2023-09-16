@@ -12,6 +12,10 @@ public class Product {
         return name;
     }
 
+    public String toString(){
+        return "Name: " + this.name +" Price: " + this.price;
+    }
+
     public void setName(String name) {
         this.name = name;
     }
@@ -19,7 +23,7 @@ public class Product {
     public double getPrice() {
         return price;
     }
-    
+
     public void setPrice(double price) {
         this.price = price;
     }
