@@ -11,8 +11,8 @@ public class RealEstateController {
         return "hello";
     }
 
-    @RequestMapping("/houses/random")
+    /*@RequestMapping("/houses/random")
     public RealEstate info(){
         return;
-    }
+    }*/
 }
