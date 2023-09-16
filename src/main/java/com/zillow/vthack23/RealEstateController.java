@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class RealEstateController {
     
-    @RequestMapping("/houses")
+    @RequestMapping("/list")
     public String hello(){
         return "hello";
     }
