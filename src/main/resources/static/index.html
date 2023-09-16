@@ -7,29 +7,6 @@
     <h1>Random Real Estate Property</h1>
     <button onclick="getRandomProperty()">Get Random Property</button>
     <div id="propertyDetails"></div>
-    <p id="message"></p> <!-- Add this paragraph for displaying a message -->
-    <script>
-        function getRandomProperty() {
-            fetch("/houses/random")
-                .then(response => response.json())
-                .then(data => {
-                    const propertyDetails = `
-                        <h2>${data.title}</h2>
-                        <p>${data.description}</p>
-                        <p>Price: $${data.price.toFixed(2)}</p>
-                        <!-- Add more property details here -->
-                    `;
-                    document.getElementById("propertyDetails").innerHTML = propertyDetails;
-
-                    // Add a success message
-                    document.getElementById("message").textContent = "Data loaded successfully!";
-                })
-                .catch(error => {
-                    console.error("Error:", error);
-                    // Add an error message
-                    document.getElementById("message").textContent = "Error loading data. Please try again.";
-                });
-        }
-    </script>
+    <p id="message"></p> 
 </body>
 </html>

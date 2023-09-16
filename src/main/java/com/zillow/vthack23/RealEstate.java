@@ -5,5 +5,9 @@ public class RealEstate {
     private double price;
     private double distance;
 
-    
+
+
+    public void randomEstate(){
+        //todo
+    }
 }
