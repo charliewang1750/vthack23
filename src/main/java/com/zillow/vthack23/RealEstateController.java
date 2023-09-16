@@ -14,6 +14,11 @@ public class RealEstateController {
         return Amazon.printList();
     }
 
+    @RequestMapping("/help")
+    public String printString(){
+        return null;
+    }
+
     /*@RequestMapping("/houses/random")
     public RealEstate info(){
         return;
