@@ -1,7 +1,13 @@
 package com.zillow.vthack23;
 
+import org.springframework.core.io.DefaultResourceLoader;
+import org.springframework.core.io.InputStreamResource;
+import org.springframework.core.io.ResourceLoader;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.io.IOException;
@@ -19,6 +25,7 @@ public class randomLocation {
     }
 
     @RequestMapping("/random")
+    @GetMapping("/random")
     public String location() throws IOException{
         String result = "";
         Location newLoc = new Location();
@@ -47,4 +54,10 @@ public class randomLocation {
         list.clear();
         return list.toString();
     }
+
+    @GetMapping("/tragic")
+    public String hi(){
+        return "hi";
+    }
+
 }
