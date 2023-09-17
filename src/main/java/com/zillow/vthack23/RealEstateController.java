@@ -7,12 +7,7 @@ import java.util.ArrayList;
 @RestController
 public class RealEstateController {
     
-    Amazon Amazon;
-
-    @RequestMapping("/list")
-    public ArrayList<Product> printList(){
-        return Amazon.printList();
-    }
+    Amazon Amazon = new Amazon();
 
     @RequestMapping("/help")
     public String printString(){
@@ -20,8 +15,8 @@ public class RealEstateController {
     }
 
     @RequestMapping("/random")
-    public double location(){
-        return Amazon.newLocation();
+    public String location(){
+        return Amazon.toString();
     }
 
     /*@RequestMapping("/houses/random")
