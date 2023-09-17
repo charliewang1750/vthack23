@@ -5,12 +5,13 @@ import java.lang.Math;
 import org.springframework.stereotype.Service;
 
 @Service
-public class Amazon {
+public class Location {
 
     private double longitude;
     private double latitude;
+    ArrayList<Location> list = new ArrayList<>();
 
-    public Amazon(){
+    public Location(){
         this.longitude = randomLongitude();
         this.latitude = randomLatitude();
     }
