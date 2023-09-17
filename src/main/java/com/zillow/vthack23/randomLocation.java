@@ -47,7 +47,6 @@ public class randomLocation {
 
     @RequestMapping("/randomImage")
     public String randomLocImage() throws IOException{
-        System.out.println("triggered");
         String result = "";
         Location newLoc = new Location();
         
