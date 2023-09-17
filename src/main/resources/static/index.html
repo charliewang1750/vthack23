@@ -8,7 +8,6 @@
                 .then(imageUrl => {
                     var img = document.getElementById("image");
                     img.src = imageUrl;
-                    console.log(img.src);
                     getCity();
                 })
                 .catch(error => console.error(error));
@@ -41,9 +40,6 @@
     <button>testing button</button>
     </a>
 
-    <a href = "/clear">
-        <button>CLEAR LIST</button>
-    </a>
 
     <img id="image" src="images/test" width="400" height="400"/>
     <p id="locationtext">EmptyText</p>

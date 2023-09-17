@@ -67,7 +67,7 @@ public class randomLocation {
     @RequestMapping("/getCity")
     public String getCity(){
         String result = locationInfo.getCity() + ", " + locationInfo.getCountry();
-        if(result.equals(", ")){
+        if(result.equals(", ")){ 
             result = "NO CITY FOUND (PROBABLY OCEAN)";
         }
         return result;

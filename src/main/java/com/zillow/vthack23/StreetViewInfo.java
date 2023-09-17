@@ -11,13 +11,13 @@ import org.json.JSONObject;
 
 public class StreetViewInfo {
     private static final String GOOGLE_API_KEY = "AIzaSyA9NpNncXJgKB8vvBM1evqSWa9GZOerS1I";
-
+    static LocationInfo locationInfo;// = new LocationInfo("","","",0,0);
     public static void main(String[] args) {
-        double latitude = 37.7749; // Replace with your latitude
-        double longitude = -122.4194; // Replace with your longitude
+        double latitude = 11.23;//37.7749; // Replace with your latitude
+        double longitude = 52.4241;//-122.4194; // Replace with your longitude
 
         try {
-            LocationInfo locationInfo = getLocationInfo(latitude, longitude);
+            locationInfo = getLocationInfo(latitude, longitude);
             if (locationInfo != null) {
                 System.out.println("City/Country: " + locationInfo.city + ", " + locationInfo.country);
                 System.out.println("Street View Image URL: " + locationInfo.streetViewImageUrl);
@@ -35,7 +35,7 @@ public class StreetViewInfo {
         // Step 1: Get City/Country information using Geocoding API
         String geoCodingUrl = "https://maps.googleapis.com/maps/api/geocode/json?latlng=" + latitude + "," + longitude + "&key=" + GOOGLE_API_KEY;
         String geoCodingResponse = sendHttpRequest(geoCodingUrl);
-
+        
         JSONObject geoCodingJson = new JSONObject(geoCodingResponse);
         JSONArray results = geoCodingJson.getJSONArray("results");
         JSONObject result = results.getJSONObject(0);
@@ -56,6 +56,26 @@ public class StreetViewInfo {
                 country = component.getString("long_name");
             }
         }
+
+        if(city!=null && !city.isEmpty()){
+            String nearestCityUrl = "https://maps.googleapis.com/maps/api/geocode/json?address="+city.replace(" ","+")+"&key=" + GOOGLE_API_KEY;
+            String nearestCityResponse = sendHttpRequest(nearestCityUrl);
+            JSONObject nearestCityJson = new JSONObject(nearestCityResponse);
+            JSONArray cityResults = nearestCityJson.getJSONArray("results");
+
+            if (cityResults.length() > 0) {
+                JSONObject firstResult = cityResults.getJSONObject(0);
+                JSONObject geometry = firstResult.getJSONObject("geometry");
+                JSONObject location = geometry.getJSONObject("location");
+
+                latitude = location.getDouble("lat");
+                longitude = location.getDouble("lng");
+            } 
+            else {
+                System.out.println("No results found for the city.");
+            }
+        }
+
 
         // Step 2: Get Street View Image URL
         String streetViewImageUrl = "https://maps.googleapis.com/maps/api/streetview?size=400x400&location=" + latitude + "," + longitude + "&key=" + GOOGLE_API_KEY;
