@@ -23,8 +23,8 @@ public class randomLocation {
     }
 
     @RequestMapping("/list")
-    public ArrayList<Location> printList(){
-        return list;
+    public String printList(){
+        return list.toString();
     }
 
 }
