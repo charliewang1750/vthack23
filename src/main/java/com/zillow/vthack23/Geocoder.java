@@ -1,11 +1,28 @@
-package com.zillow;
+package com.zillow.vthack23;
 
-import java.io.BufferedReader;
-import java.io.DataOutputStream;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.URL;
+import static com.google.maps.TestUtils.retrieveBody;
+import static com.google.maps.model.ComponentFilter.administrativeArea;
+import static com.google.maps.model.ComponentFilter.country;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.fail;
+
+import com.google.maps.internal.HttpHeaders;
+import com.google.maps.model.AddressComponentType;
+import com.google.maps.model.AddressType;
+import com.google.maps.model.ComponentFilter;
+import com.google.maps.model.GeocodingResult;
+import com.google.maps.model.LatLng;
+import com.google.maps.model.LocationType;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.UUID;
+import okhttp3.Headers;
+import org.junit.Test;
+import org.junit.experimental.categories.Category;
+
 
 //AIzaSyA9NpNncXJgKB8vvBM1evqSWa9GZOerS1I
 
@@ -15,6 +32,10 @@ public class Geocoder {
     //     https://geocode.xyz
 
     public static String executePost(String targetURL, String urlParameters) {
+
+        GeoApiContext context = new GeoApiContext.Builder()
+            .apiKey("AIzaSyA9NpNncXJgKB8vvBM1evqSWa9GZOerS1I")
+            .build();
         HttpURLConnection connection = null;
         try {
             //Create connection
