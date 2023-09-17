@@ -55,7 +55,7 @@ public class randomLocation {
         return list.toString();
     }
 
-    @GetMapping("/tragic")
+    @GetMapping("tragic")
     public String hi(){
         return "hi";
     }
