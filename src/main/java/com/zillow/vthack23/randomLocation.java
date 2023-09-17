@@ -28,12 +28,9 @@ public class randomLocation {
         return list.toString();
     }
 
-    @RequestMapping("/delete")
-    public String removeItem(@PathVariable int number){
-        if(list.size() == 0){
-            return "The list is empty.";
-        }
-        list.remove(list.size() - 1);
+    @RequestMapping("/clear")
+    public String removeItem(){
+        list.clear();
         return list.toString();
     }
 }
