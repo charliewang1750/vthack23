@@ -3,6 +3,8 @@ package com.zillow.vthack23;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.io.IOException;
 import java.util.ArrayList;
 
 @RestController
@@ -17,10 +19,22 @@ public class randomLocation {
     }
 
     @RequestMapping("/random")
-    public String location(){
+    public String location() throws IOException{
+        String result = "";
         Location newLoc = new Location();
         list.add(newLoc);
-        return newLoc.toString();
+        LocationInfo locationInfo = StreetViewInfo.getLocationInfo(newLoc.getLatitude(), newLoc.getLongitude());
+        
+        if (locationInfo != null) {
+            result += "City/Country: " + locationInfo.city + ", " + locationInfo.country+"\n";
+            result += "Street View Image URL: " + locationInfo.streetViewImageUrl+"\n";
+            result +=  "Latitude: " + locationInfo.latitude+"\n";
+            result += "Longitude: " + locationInfo.longitude+"\n";
+        } else {
+            result += "Unable to retrieve location information.\n";
+        }
+        System.out.println(locationInfo);
+        return result;
     }
 
     @RequestMapping("/list")
