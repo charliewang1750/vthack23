@@ -5,9 +5,10 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.ArrayList;
 
 @RestController
-public class RealEstateController {
+public class randomLocation {
     
-    Amazon Amazon = new Amazon();
+    ArrayList<Location> list = new ArrayList<>();
+    Location location = new Location();
 
     @RequestMapping("/help")
     public String printString(){
@@ -16,11 +17,14 @@ public class RealEstateController {
 
     @RequestMapping("/random")
     public String location(){
-        return Amazon.toString();
+        Location newLoc = new Location();
+        list.add(newLoc);
+        return newLoc.toString();
     }
 
-    /*@RequestMapping("/houses/random")
-    public RealEstate info(){
-        return;
-    }*/
+    @RequestMapping("/list")
+    public ArrayList<Location> printList(){
+        return list;
+    }
+
 }
