@@ -1,13 +1,37 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <script>
+        function changeImage() {
+            fetch('/randomImage') // Replace with your server endpoint
+                .then(response => response.text())
+                .then(imageUrl => {
+                    var img = document.getElementById("image");
+                    img.src = imageUrl;
+                    console.log(img.src);
+                    getCity();
+                })
+                .catch(error => console.error(error));
+        }
+
+        function getCity(){
+            fetch('/getCity')
+                .then(response=> response.text())
+                .then(city => {
+                    var txt = document.getElementById("locationtext");
+                    txt.textContent = city;
+                })
+                .catch(error => console.error(error));
+        }
+    </script>
+
     <title>Random Location</title>
 </head>
 <body class="buttons">
     <h1>random location</h1>
-    <a href = "/random">
-    <button onclick="Amazon.location()">RANDOM LOCATION</button>
-    </a>
+    <!--<a href = "/random">-->
+    <button onclick="changeImage()">RANDOM LOCATION</button>
+    <!--</a> -->
 
     <a href = "/list">
     <button>LIST OF STUFF</button>
@@ -21,5 +45,7 @@
         <button>CLEAR LIST</button>
     </a>
 
+    <img id="image" src="images/test" width="400" height="400"/>
+    <p id="locationtext">EmptyText</p>
 </body>
 </html>

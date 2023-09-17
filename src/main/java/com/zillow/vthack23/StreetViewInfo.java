@@ -86,6 +86,14 @@ public class StreetViewInfo {
 class LocationInfo {
     String city;
     String country;
+    public String getCity() {
+        return city;
+    }
+
+    public String getCountry() {
+        return country;
+    }
+
     String streetViewImageUrl;
     double latitude;
     double longitude;

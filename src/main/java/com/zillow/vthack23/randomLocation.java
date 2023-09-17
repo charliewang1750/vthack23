@@ -12,6 +12,7 @@ public class randomLocation {
     
     ArrayList<Location> list = new ArrayList<>();
     Location location = new Location();
+    LocationInfo locationInfo;
 
     @RequestMapping("/help")
     public String printString(){
@@ -22,9 +23,9 @@ public class randomLocation {
     public String location() throws IOException{
         String result = "";
         Location newLoc = new Location();
-        list.add(newLoc);
-        LocationInfo locationInfo = StreetViewInfo.getLocationInfo(newLoc.getLatitude(), newLoc.getLongitude());
         
+        LocationInfo locationInfo = StreetViewInfo.getLocationInfo(newLoc.getLatitude(), newLoc.getLongitude());
+        list.add(newLoc);
         if (locationInfo != null) {
             result += "City/Country: " + locationInfo.city + ", " + locationInfo.country+"\n";
             result += "Street View Image URL: " + locationInfo.streetViewImageUrl+"\n";
@@ -34,6 +35,34 @@ public class randomLocation {
             result += "Unable to retrieve location information.\n";
         }
         System.out.println(locationInfo);
+        return result;
+    }
+
+    @RequestMapping("/randomImage")
+    public String randomLocImage() throws IOException{
+        System.out.println("triggered");
+        String result = "";
+        Location newLoc = new Location();
+        
+        locationInfo = StreetViewInfo.getLocationInfo(newLoc.getLatitude(), newLoc.getLongitude());
+        list.add(newLoc);
+        if (locationInfo != null) {
+            result += "City/Country: " + locationInfo.city + ", " + locationInfo.country+"\n";
+            result += "Street View Image URL: " + locationInfo.streetViewImageUrl+"\n";
+            result +=  "Latitude: " + locationInfo.latitude+"\n";
+            result += "Longitude: " + locationInfo.longitude+"\n";
+        } else {
+            result += "Unable to retrieve location information.\n";
+        }
+        return locationInfo.streetViewImageUrl;
+    }
+
+    @RequestMapping("/getCity")
+    public String getCity(){
+        String result = locationInfo.getCity() + ", " + locationInfo.getCountry();
+        if(result.equals(", ")){
+            result = "NO CITY FOUND (PROBABLY OCEAN)";
+        }
         return result;
     }
 
